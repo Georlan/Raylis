@@ -4,6 +4,23 @@ Base inicial do site/catálogo digital da **Raylis Produtos Naturais**, criada p
 
 **Estado:** estrutura funcional; cadastro oficial ainda não recebido. A versão pública não exibe itens fictícios como mercadorias reais.
 
+## Interface mobile-first
+
+A UI atual é **programada em HTML, CSS e JavaScript reais**, não reproduz um mockup ou uma tela de IA. O site usa componentes simples que funcionam em celular, teclado e mouse.
+
+- **Entrada compacta:** cabeçalho fixo, abertura curta e início do catálogo próximo da primeira tela.
+- **Categorias em trilho horizontal:** controle por toque/arrasto, botões de avançar e voltar, indicação da categoria ativa.
+- **Busca de produtos:** destaque no topo da seção, atalho da lupa no cabeçalho e filtros rápidos por categoria.
+- **Filtros mobile em painel inferior:** drawer com categorias, marca e disponibilidade, contador e botão de fechar. Desktop usa painel lateral temporário.
+- **Resultados compactos:** 12 cards por lote, detalhes em dialog e botão de consulta pelo WhatsApp somente para produtos reais.
+- **Navegação mobile fixa:** Início, Categorias, Catálogo e Contato.
+- **Animações discretas:** resposta a hover, leve efeito de ponteiro no símbolo, transição de cards e estados ativos. Respeita `prefers-reduced-motion`; no celular, nenhuma interação depende de hover.
+- **Asset independente:** ícone `assets/whatsapp.svg`, leve, local, inserido nos links de contato. Não carrega imagem de terceiros.
+- **Sem fluxos falsos:** nenhuma sacola, pedido, checkout, preço, estoque, avaliações ou informações de saúde inventados.
+- **Sem custo recorrente de aplicação:** o catálogo é JSON estático, sem API, autenticação nem servidor remoto.
+
+A nova camada visual está em `styles/app-ui.css`. Os estilos anteriores foram mantidos como base de compatibilidade durante a transição; consolidar as folhas após a aprovação visual. O conteúdo de demonstração contém itens fictícios claramente identificados e não disponibiliza ações de compra.
+
 ## Navegação
 
 - Layout responsivo para celulares, tablets e desktop.
