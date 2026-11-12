@@ -21,36 +21,30 @@ A UI atual é **programada em HTML, CSS e JavaScript reais**, não reproduz um m
 
 A nova camada visual está em `styles/app-ui.css`. Os estilos anteriores foram mantidos como base de compatibilidade durante a transição; consolidar as folhas após a aprovação visual. O conteúdo de demonstração contém itens fictícios claramente identificados e não disponibiliza ações de compra.
 
-## Assets editoriais próprios
+## Assets individuais das categorias
 
-Para reduzir a estética genérica, a Raylis passou a usar sete ilustrações vetoriais independentes, criadas para o projeto em vez de utilizar montagens de telas, imagens de embalagens inventadas ou componentes gráficos sem propósito.
+A Raylis usa **sete fotografias editoriais otimizadas** em WebP. Cada imagem fica em um arquivo independente; as seis categorias são botões reais, não uma imagem de interface. As fotografias foram produzidas com IA como *direção de arte ilustrativa*, sem copiar marcas, embalagens reais, preços ou textos.
 
-| Asset | Arquivo | Onde aparece |
+| Categoria | Arquivo | Uso |
 | --- | --- | --- |
-| Composição de chá | `assets/illustrations/hero-ritual.svg` | Abertura do catálogo |
-| Chás e infusões | `assets/illustrations/category-chas.svg` | Categorias e fallback sem foto |
-| Suplementos | `assets/illustrations/category-suplementos.svg` | Categorias e fallback sem foto |
-| Vitaminas e minerais | `assets/illustrations/category-vitaminas.svg` | Categorias e fallback sem foto |
-| Alimentos naturais | `assets/illustrations/category-alimentos.svg` | Categorias e fallback sem foto |
-| Cuidados pessoais | `assets/illustrations/category-cuidados.svg` | Categorias e fallback sem foto |
-| Outros produtos | `assets/illustrations/category-outros.svg` | Categorias e fallback sem foto |
+| Chás e infusões | `assets/photos/category-chas.webp` | Botão da categoria |
+| Suplementos | `assets/photos/category-suplementos.webp` | Botão da categoria |
+| Vitaminas e minerais | `assets/photos/category-vitaminas.webp` | Botão da categoria |
+| Alimentos naturais | `assets/photos/category-alimentos.webp` | Botão da categoria |
+| Cuidados pessoais | `assets/photos/category-cuidados.webp` | Botão da categoria |
+| Outros produtos | `assets/photos/category-outros.webp` | Botão da categoria |
+| Fotografia de chá | `assets/photos/hero-tea.webp` | Abertura da página |
 
-As ilustrações são **representações gráficas das categorias**, não imagens de itens à venda, rótulos, certificações ou demonstrações de efeitos à saúde. O rótulo "Imagem de categoria" aparece quando não há foto de produto; no modo de demonstração permanece "EXEMPLO FICTÍCIO". Ao cadastrar fotos reais e autorizadas em `data/products.json`, o site prioriza as fotos reais.
+### Comportamento e acessibilidade
 
-Os arquivos não têm dependência externa ou fontes incorporadas. Foram produzidos como SVGs separados com uma linguagem editorial de cores restritas, sombras suaves e traços consistentes. Cada arquivo pode ser editado e substituído independentemente. A identidade oficial da Raylis continua nos arquivos de logotipo já aprovados.
+- O HTML e o JavaScript renderizam os cartões como `<button>` com `aria-pressed` e selecionam efetivamente a categoria correspondente, inclusive por teclado.
+- O trilho rola horizontalmente pelo toque, mouse ou botões anterior/próximo.
+- Em telas com mouse, as fotos têm movimento leve no hover. Em dispositivos de toque, não há dependência de hover. `prefers-reduced-motion` desabilita transições.
+- Os itens demonstrativos são explicitamente fictícios. Quando um produto não tem foto real, aparece a **imagem ilustrativa de sua categoria**, com aviso visível. Nunca usar estas fotografias como prova de que um item específico é comercializado.
+- A consulta por WhatsApp continua restrita a produtos reais. Não há checkout ou backend.
+- A marca oficial continua usando os arquivos Raylis de logo e símbolo aprovados anteriormente.
 
-**Como usar os assets no código:**
-
-```html
-<img src="./assets/illustrations/hero-ritual.svg" alt="" />
-```
-
-```js
-import { categoryArtwork } from "./src/artwork.mjs";
-const src = categoryArtwork("chas"); // assets/illustrations/category-chas.svg
-```
-
-A integração existente no site está em `src/app.mjs`, mapeada por `src/artwork.mjs`, e as regras visuais em `styles/artwork.css`. O movimento da abertura usa variáveis CSS e só é acionado em dispositivos com mouse e preferência por animação.
+Os caminhos são centralizados em `src/artwork.mjs`; o CSS fica em `styles/artwork.css` e a interação em `src/app.mjs`. Para trocar uma fotografia, basta substituir o arquivo mantendo o nome, ou atualizar o mapeamento. O objetivo é que os clientes reconheçam a categoria pelos elementos visuais, e que as fotos oficiais dos produtos tenham precedência quando cadastradas.
 
 ## Navegação
 
