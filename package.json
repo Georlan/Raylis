@@ -8,8 +8,11 @@
     "dev": "node scripts/dev-server.mjs",
     "test": "node --test",
     "check": "node scripts/check-site.mjs",
-    "validate": "npm run check && npm test",
-    "import:csv": "node scripts/import-csv.mjs"
+    "validate": "npm run check && npm test && npm run build && npm run check:dist",
+    "import:csv": "node scripts/import-csv.mjs",
+    "build": "node scripts/build.mjs",
+    "check:dist": "node scripts/check-dist.mjs",
+    "preview": "node scripts/preview-build.mjs"
   },
   "engines": {
     "node": ">=20"

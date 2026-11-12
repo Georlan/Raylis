@@ -137,11 +137,17 @@ A Raylis poderá ter cerca de 500 produtos sem mensalidade de backend: prepare u
 
 Seus dados ficam nos arquivos do repositório. **Não colocar credenciais, dados privados de clientes ou informações confidenciais nos arquivos públicos de catálogo.**
 
-## Publicação (somente quando aprovada)
+## Publicação de testes no Cloudflare Pages
 
-O projeto também é compatível com Cloudflare Pages ou GitHub Pages sem build. **Ainda não há site publicado automaticamente no Cloudflare.**
+O repositório está preparado para **Cloudflare Pages via GitHub**, sem backend, banco de dados ou pagamento mensal de aplicação.
 
-Para Cloudflare Pages, após aprovar a versão: conectar o GitHub, selecionar `Georlan/Raylis`, manter comando de build vazio e definir diretório de saída como a raiz `/` conforme o fluxo de implantação estática disponível. Nenhum token ou banco é necessário no código do site.
+**Configuração:** nome do projeto `raylis` (se disponível), branch `main`, Framework `None`, Build command `npm run build`, Output directory `dist`, Root directory em branco. O Node 22 está fixado em `.node-version`.
+
+Para simular exatamente o conteúdo publicado: `npm run validate` e `npm run preview`, acessando `http://localhost:4173`.
+
+A pasta `dist/` é gerada automaticamente e contém apenas arquivos públicos. Ela não é versionada. Por segurança, o site em teste recebe `noindex` temporário via `_headers`, que deve ser removido antes do lançamento definitivo.
+
+**Leia o guia completo em [CLOUDFLARE.md](CLOUDFLARE.md).** A conexão da conta Cloudflare com o GitHub, a escolha e a reserva do subdomínio `*.pages.dev` exigem a criação do projeto no painel. Não é necessário colocar credenciais em GitHub ou no site.
 
 ## Paleta da marca (extraída das imagens aprovadas)
 
