@@ -2,58 +2,106 @@
    Imagens editoriais separadas e independentes dos controles interativos.
    Cards continuam sendo botões reais e preservam os filtros do catálogo. */
 
+/* Cabeçalho visual: conteúdo real sobre um asset fotográfico independente. */
+.hero {padding:20px 0 25px;}
 .hero-card {
-  min-height:350px;
-  grid-template-columns: minmax(0,1fr) minmax(310px,.82fr);
-  background:#f0f1e8;
-  border:1px solid #dbe4d2;
-  border-radius:22px;
+  display:block;
+  position:relative;
+  isolation:isolate;
+  min-height:385px;
   padding:0;
+  overflow:hidden;
+  background:#f6f3e9;
+  border:1px solid #e0e4d7;
+  border-radius:27px;
   box-shadow:none;
 }
 .hero-content {
   position:relative;
   z-index:2;
-  padding:36px 26px 36px 43px;
-  max-width:560px;
+  width:57%;
+  max-width:630px;
+  padding:57px 24px 55px clamp(29px,4.4vw,66px);
 }
+.hero-kicker {
+  display:flex;align-items:center;gap:12px;
+  margin:0 0 20px;
+  color:#357447;
+  font-size:10px;font-weight:800;letter-spacing:.13em;
+}
+.hero-kicker::before {
+  content:"";display:block;width:3px;height:23px;border-radius:3px;
+  background:#619d3c;flex:none;
+}
+.hero h1 {
+  font-size:clamp(38px,4.2vw,62px);
+  line-height:1.08;
+  letter-spacing:-.052em;
+  color:#103a25;
+  margin-bottom:21px;
+}
+.hero h1 em {color:#59983b;}
+.hero-description {
+  max-width:500px;
+  font-size:14px;
+  line-height:1.7;
+  color:#3e5e45;
+  margin-bottom:27px;
+}
+.hero-button {
+  min-height:48px;
+  padding:13px 23px;
+  gap:24px;
+  border-radius:50px;
+  background:#064714;color:#fff;
+  box-shadow:none;
+}
+.hero-button:hover {background:#236a32;transform:translateY(-1px);}
 .hero-visual {
-  position:relative;
-  height:100%;
-  min-height:345px;
-  align-self:stretch;
-  display:block;
-  overflow:hidden;
-  border-radius:0 21px 21px 0;
-  background:#e5e9dc;
-}
-.hero-visual:before,.hero-visual:after,.hero-visual-ring {display:none!important;}
-.hero-visual img.hero-artwork {
-  display:block;
   position:absolute;
+  z-index:1;
+  inset:0 0 0 auto;
+  width:61%;
+  height:100%;
+  min-height:0;
+  padding:0;
+  overflow:hidden;
+  border-radius:0;
+  background:transparent;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 28%);
+  mask-image:linear-gradient(to right,transparent 0%,#000 28%);
+}
+.hero-visual::before,.hero-visual::after,.hero-visual-ring {display:none!important;}
+.hero-visual img.hero-artwork {
+  position:absolute;
+  display:block;
+  inset:0;
   width:100%;
   height:100%;
-  inset:0;
-  left:0;top:0;
   max-width:none;
   max-height:none;
   object-fit:cover;
-  object-position:52% center;
+  object-position:55% center;
   opacity:1;
   filter:none;
-  transform:scale(var(--hero-scale,1));
-  transition:transform .75s cubic-bezier(.2,.75,.2,1);
+  transform:translate3d(var(--mouse-x,0px),var(--mouse-y,0px),0) scale(1.045);
+  transition:transform .5s cubic-bezier(.2,.75,.2,1);
 }
-.hero-card:hover .hero-artwork {--hero-scale:1.035;}
 .hero-visual-caption {
-  right:14px;
-  bottom:13px;
-  padding:5px 9px;
-  background:rgba(255,254,247,.88);
-  border-radius:30px;
-  color:#365e39;
-  font-size:8px;
-  letter-spacing:.14em;
+  position:absolute;
+  bottom:22px;right:23px;
+  display:inline-flex;align-items:center;gap:7px;
+  padding:8px 12px;
+  border-radius:50px;
+  background:rgba(251,250,244,.94);
+  color:#24562f;
+  font-size:9px;font-weight:800;letter-spacing:.10em;
+  white-space:nowrap;
+  box-shadow:0 3px 10px rgba(43,47,29,.06);
+}
+.hero-visual-caption svg {
+  display:block;width:14px;height:14px;fill:none;
+  stroke:#60943a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;
 }
 
 /* Um trilho de categorias que mostra os ativos sem esconder o rótulo. */
@@ -187,23 +235,18 @@
   .category-tile {flex-basis:194px;min-width:194px;height:200px;min-height:200px;}
 }
 @media(max-width:760px) {
-  .hero-card {
-    grid-template-columns:minmax(0,1fr) 112px;
-    min-height:235px;
-    border-radius:20px;
-  }
-  .hero-content {padding:19px 8px 20px 19px;}
-  .hero-visual {
-    min-height:233px;
-    border-radius:0 19px 19px 0;
-  }
-  .hero-visual img.hero-artwork {
-    width:100%;height:100%;left:0;top:0;
-    object-position:57% center;
-    transform:scale(var(--hero-scale,1));
-  }
-  .hero-card:hover .hero-artwork {--hero-scale:1;}
-  .hero-visual-caption {font-size:7px;right:5px;bottom:5px;letter-spacing:.03em;}
+  .hero {padding:13px 0 18px;}
+  .hero-card {min-height:265px;border-radius:20px;}
+  .hero-content {width:70%;padding:25px 12px 25px 23px;max-width:none;}
+  .hero-kicker {font-size:8px;letter-spacing:.08em;margin-bottom:12px;gap:8px;}
+  .hero-kicker::before {height:18px;width:3px;}
+  .hero h1 {font-size:clamp(27px,4.8vw,38px);margin-bottom:10px;line-height:1.12;}
+  .hero-description {font-size:12px;line-height:1.5;margin-bottom:16px;}
+  .hero-button {min-height:40px;padding:11px 16px;font-size:11px;gap:12px;}
+  .hero-visual {width:61%;height:100%;-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 43%);mask-image:linear-gradient(to right,transparent 0%,#000 43%);}
+  .hero-visual img.hero-artwork {object-position:52% center;transform:scale(1.03);}
+  .hero-visual-caption {bottom:8px;right:8px;font-size:7px;padding:5px 8px;gap:4px;letter-spacing:.04em;}
+  .hero-visual-caption svg {width:11px;height:11px;}
   .category-tiles {gap:10px;padding-bottom:12px;}
   .category-tile {
     flex:0 0 166px;
@@ -218,9 +261,26 @@
   .product-visual img.category-illustration {width:97%;height:86%;max-height:none;}
   .product-visual .illustration-note {font-size:8px;bottom:5px;}
 }
+@media(max-width:580px) {
+  .hero-card {min-height:350px;}
+  .hero-content {width:100%;padding:21px 20px 157px;}
+  .hero-kicker {margin-bottom:11px;}
+  .hero h1 {max-width:340px;font-size:clamp(29px,7vw,37px);margin-bottom:9px;}
+  .hero-description {max-width:335px;font-size:11.5px;line-height:1.5;margin-bottom:14px;}
+  .hero-visual {
+    top:auto;right:0;bottom:0;left:0;
+    width:100%;height:176px;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 28%);
+    mask-image:linear-gradient(to bottom,transparent 0%,#000 28%);
+  }
+  .hero-visual img.hero-artwork {object-position:center 55%;transform:scale(1.025);}
+  .hero-visual-caption {bottom:9px;right:10px;}
+}
 @media(max-width:380px) {
-  .hero-card {grid-template-columns:minmax(0,1fr) 90px;}
-  .hero-content {padding-left:14px;}
+  .hero-card {min-height:356px;}
+  .hero-content {padding:19px 17px 161px;}
+  .hero h1 {font-size:29px;}
+  .hero-description {font-size:11px;}
   .category-tile {flex-basis:153px;min-width:153px;height:170px;min-height:170px;}
 }
 @media(hover:none),(pointer:coarse) {
