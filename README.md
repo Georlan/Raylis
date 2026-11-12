@@ -21,6 +21,14 @@ A UI atual é **programada em HTML, CSS e JavaScript reais**, não reproduz um m
 
 A nova camada visual está em `styles/app-ui.css`. Os estilos anteriores foram mantidos como base de compatibilidade durante a transição; consolidar as folhas após a aprovação visual. O conteúdo de demonstração contém itens fictícios claramente identificados e não disponibiliza ações de compra.
 
+## Cabeçalho e abertura atualizados
+
+O cabeçalho usa os elementos reais da Raylis, com marca, navegação por seções, pesquisa e WhatsApp. No desktop, o item da navegação correspondente à seção visível recebe um indicador discreto. No celular, a navegação colapsa em menu e a abertura preserva leitura e ação sem depender de hover.
+
+A abertura foi reconstruída separando conteúdo HTML de fotografia: `assets/photos/hero-editorial.webp` é um recorte editorial sem textos, extraído da referência visual aprovada. A fotografia é decorativa e **não corresponde a um item específico do estoque**. Fundo e transição são controlados por CSS, enquanto texto, botão e localização são elementos HTML; nenhum print de interface é publicado como imagem de página.
+
+Estilos da navegação: `styles/app-ui.css`. Estilos responsivos da abertura: `styles/artwork.css`. Navegação ativa: `src/app.mjs`.
+
 ## Assets individuais das categorias
 
 A Raylis usa **sete fotografias editoriais otimizadas** em WebP. Cada imagem fica em um arquivo independente; as seis categorias são botões reais, não uma imagem de interface. As fotografias foram produzidas com IA como *direção de arte ilustrativa*, sem copiar marcas, embalagens reais, preços ou textos.
@@ -33,7 +41,7 @@ A Raylis usa **sete fotografias editoriais otimizadas** em WebP. Cada imagem fic
 | Alimentos naturais | `assets/photos/category-alimentos.webp` | Botão da categoria |
 | Cuidados pessoais | `assets/photos/category-cuidados.webp` | Botão da categoria |
 | Outros produtos | `assets/photos/category-outros.webp` | Botão da categoria |
-| Fotografia de chá | `assets/photos/hero-tea.webp` | Abertura da página |
+| Fotografia de chá | `assets/photos/hero-editorial.webp` | Abertura da página |
 
 ### Comportamento e acessibilidade
 
