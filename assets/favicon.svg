@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#153d2d"/><path d="M32 51C8 35 21 18 32 9c11 9 24 26 0 42Z" fill="#abc571" stroke="#f8f5e9" stroke-width="2"/><path d="M32 49V18" stroke="#234e32" stroke-width="2"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Raylis Produtos Naturais</title>
+  <rect width="64" height="64" rx="14" fill="#FBF8F0"/>
+  <g stroke="#14551A" stroke-width="3.4" stroke-linejoin="round">
+    <path d="M32 51C18 40 21 19 32 7C43 19 46 40 32 51Z" fill="#BBD96C"/>
+    <path d="M31 51C16 52 10 35 11 21C26 23 35 35 31 51Z" fill="#87B94D"/>
+    <path d="M33 51C48 52 54 35 53 21C38 23 29 35 33 51Z" fill="#87B94D"/>
+    <path d="M29 52C17 54 6 49 5 36C20 35 29 43 29 52Z" fill="#5E9A2D"/>
+    <path d="M35 52C47 54 58 49 59 36C44 35 35 43 35 52Z" fill="#5E9A2D"/>
+  </g>
+  <path d="M7 56c12-4 17-4 25 0 8-4 13-4 25 0" stroke="#1B6220" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>
