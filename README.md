@@ -14,12 +14,43 @@ A UI atual é **programada em HTML, CSS e JavaScript reais**, não reproduz um m
 - **Filtros mobile em painel inferior:** drawer com categorias, marca e disponibilidade, contador e botão de fechar. Desktop usa painel lateral temporário.
 - **Resultados compactos:** 12 cards por lote, detalhes em dialog e botão de consulta pelo WhatsApp somente para produtos reais.
 - **Navegação mobile fixa:** Início, Categorias, Catálogo e Contato.
-- **Animações discretas:** resposta a hover, leve efeito de ponteiro no símbolo, transição de cards e estados ativos. Respeita `prefers-reduced-motion`; no celular, nenhuma interação depende de hover.
+- **Animações discretas:** resposta a hover, leve efeito de ponteiro na composição ilustrada da abertura, transição de cards e estados ativos. Respeita `prefers-reduced-motion`; no celular, nenhuma interação depende de hover.
 - **Asset independente:** ícone `assets/whatsapp.svg`, leve, local, inserido nos links de contato. Não carrega imagem de terceiros.
 - **Sem fluxos falsos:** nenhuma sacola, pedido, checkout, preço, estoque, avaliações ou informações de saúde inventados.
 - **Sem custo recorrente de aplicação:** o catálogo é JSON estático, sem API, autenticação nem servidor remoto.
 
 A nova camada visual está em `styles/app-ui.css`. Os estilos anteriores foram mantidos como base de compatibilidade durante a transição; consolidar as folhas após a aprovação visual. O conteúdo de demonstração contém itens fictícios claramente identificados e não disponibiliza ações de compra.
+
+## Assets editoriais próprios
+
+Para reduzir a estética genérica, a Raylis passou a usar sete ilustrações vetoriais independentes, criadas para o projeto em vez de utilizar montagens de telas, imagens de embalagens inventadas ou componentes gráficos sem propósito.
+
+| Asset | Arquivo | Onde aparece |
+| --- | --- | --- |
+| Composição de chá | `assets/illustrations/hero-ritual.svg` | Abertura do catálogo |
+| Chás e infusões | `assets/illustrations/category-chas.svg` | Categorias e fallback sem foto |
+| Suplementos | `assets/illustrations/category-suplementos.svg` | Categorias e fallback sem foto |
+| Vitaminas e minerais | `assets/illustrations/category-vitaminas.svg` | Categorias e fallback sem foto |
+| Alimentos naturais | `assets/illustrations/category-alimentos.svg` | Categorias e fallback sem foto |
+| Cuidados pessoais | `assets/illustrations/category-cuidados.svg` | Categorias e fallback sem foto |
+| Outros produtos | `assets/illustrations/category-outros.svg` | Categorias e fallback sem foto |
+
+As ilustrações são **representações gráficas das categorias**, não imagens de itens à venda, rótulos, certificações ou demonstrações de efeitos à saúde. O rótulo "Imagem de categoria" aparece quando não há foto de produto; no modo de demonstração permanece "EXEMPLO FICTÍCIO". Ao cadastrar fotos reais e autorizadas em `data/products.json`, o site prioriza as fotos reais.
+
+Os arquivos não têm dependência externa ou fontes incorporadas. Foram produzidos como SVGs separados com uma linguagem editorial de cores restritas, sombras suaves e traços consistentes. Cada arquivo pode ser editado e substituído independentemente. A identidade oficial da Raylis continua nos arquivos de logotipo já aprovados.
+
+**Como usar os assets no código:**
+
+```html
+<img src="./assets/illustrations/hero-ritual.svg" alt="" />
+```
+
+```js
+import { categoryArtwork } from "./src/artwork.mjs";
+const src = categoryArtwork("chas"); // assets/illustrations/category-chas.svg
+```
+
+A integração existente no site está em `src/app.mjs`, mapeada por `src/artwork.mjs`, e as regras visuais em `styles/artwork.css`. O movimento da abertura usa variáveis CSS e só é acionado em dispositivos com mouse e preferência por animação.
 
 ## Navegação
 
@@ -27,7 +58,7 @@ A nova camada visual está em `styles/app-ui.css`. Os estilos anteriores foram m
 - Pesquisa por nome, categoria, marca, descrição e tags (insensível a acentos).
 - Filtros por categoria, marca e disponibilidade, com contadores e remoção rápida.
 - Ordenação alfabética e por data de cadastro.
-- Carregamento progressivo de 24 em 24 produtos (não renderiza 500 cards de uma só vez).
+- Carregamento progressivo de 12 em 12 produtos (não renderiza 500 cards de uma só vez).
 - Painel de detalhes de produto e espaço reservado para fotos.
 - Estado vazio apropriado enquanto o catálogo real é preparado.
 - Filtros preservados na URL (compartilháveis).
