@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 190">
+<defs>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF" stop-opacity=".85"/><stop offset=".45" stop-color="#E3EEDF" stop-opacity=".28"/><stop offset="1" stop-color="#A6BBA2" stop-opacity=".65"/></linearGradient>
+<linearGradient id="tea" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#D69B49"/><stop offset=".6" stop-color="#B57935"/><stop offset="1" stop-color="#8B501D"/></linearGradient>
+<linearGradient id="leaf" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#8AB559"/><stop offset=".55" stop-color="#397B39"/><stop offset="1" stop-color="#18552C"/></linearGradient>
+<linearGradient id="ceramic" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#FFFDF6"/><stop offset="1" stop-color="#D1D3BB"/></linearGradient>
+</defs><ellipse cx="124" cy="163" rx="99" ry="11" fill="#385B39" opacity=".09"/>
+<circle cx="104" cy="102" r="64" fill="#EFA34B" stroke="#C97629" stroke-width="4"/>
+<circle cx="104" cy="102" r="56" fill="#FFDE8D" stroke="#FFF0BB" stroke-width="5"/>
+<circle cx="104" cy="102" r="47" fill="#F5B958"/>
+<g stroke="#FFF4C8" stroke-width="3.5"><path d="M104 55v94M57 102h94M70 69l68 67M138 69l-68 67"/></g>
+<circle cx="104" cy="102" r="8" fill="#FFF4CF"/>
+<path d="M161 45c15-24 34-24 50-15-10 23-27 33-50 15Z" fill="url(#leaf)" stroke="#24622D" stroke-width="2"/>
+<path d="M165 45c11-8 22-10 33-10" stroke="#B5D69A" stroke-width="2" fill="none"/>
+<g transform="translate(151 128) rotate(-27 30 13)"><rect width="64" height="28" rx="14" fill="#F8EACB" stroke="#C5AF83" stroke-width="2.4"/><path d="M32 0v28" stroke="#BBA57A" stroke-width="2"/><path d="M4 13c0-8 5-9 10-10" stroke="#FFFDF3" stroke-width="3" fill="none"/></g>
+</svg>
