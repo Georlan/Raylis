@@ -9,7 +9,7 @@ export const CATEGORY_ARTWORK = Object.freeze({
   cuidados: "./assets/photos/category-cuidados.webp",
   outros: "./assets/photos/category-outros.webp"
 });
-export const HERO_ARTWORK = "./assets/photos/hero-tea.webp";
+export const HERO_ARTWORK = "./assets/photos/hero-editorial.webp";
 export function categoryArtwork(categoryId) {
   return CATEGORY_ARTWORK[categoryId] || CATEGORY_ARTWORK.outros;
 }
