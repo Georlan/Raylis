@@ -1,5 +1,6 @@
 import {CATEGORIES,PAGE_SIZE,cleanProducts,selectProducts,categoryCounts,paginate,createDemoProducts,sanitizeImageSrc} from "./catalog.mjs";
 import {CONTACT, productInquiryLink} from "./contacts.mjs";
+import {categoryArtwork} from "./artwork.mjs";
 
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(window.location.search);
@@ -21,16 +22,6 @@ let searchTimer;
 const escapeHtml = value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 const categoryName = id => CATEGORIES.find(cat=>cat.id===id)?.name || "Outros";
 const statusName = status => ({"available":"Disponível","inquiry":"Sob consulta","unavailable":"Indisponível"})[status] || "A confirmar";
-const categoryIcons = {
-  chas: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4C8 4 4 8 4 16a4 4 0 0 0 4 4c8 0 12-6 12-16Z"/><path d="M5 19c3-5 6-8 11-11"/></svg>',
-  suplementos: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="8" width="12" height="13" rx="2"/><path d="M8 8V4h8v4M9 13h6"/></svg>',
-  vitaminas: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 4.5 11 11a4.2 4.2 0 0 1-6 6l-11-11a4.2 4.2 0 0 1 6-6ZM8 16l8-8"/></svg>',
-  alimentos: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v7a3 3 0 0 0 6 0V3M8 3v18M18 3c-4 3-4 10 0 12v6"/></svg>',
-  cuidados: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3S5 11 5 15a7 7 0 0 0 14 0c0-4-7-12-7-12Z"/><path d="M9 17a3 3 0 0 0 3 3"/></svg>',
-  outros: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>'
-};
-
-
 function setupContactLinks(){
   document.querySelectorAll('[data-contact="whatsapp"]').forEach(link=>link.href=CONTACT.whatsappUrl);
   document.querySelectorAll('[data-contact="instagram"]').forEach(link=>link.href=CONTACT.instagramUrl);
@@ -54,7 +45,7 @@ function renderTiles(){
   const counts=categoryCounts(catalogItems);
   $("category-tiles").innerHTML=CATEGORIES.map(cat=>`
     <button class="category-tile ${state.category===cat.id?"active":""}" type="button" data-tile="${cat.id}" aria-label="Explorar ${escapeHtml(cat.name)}" aria-pressed="${state.category===cat.id}">
-      <span class="tile-top"><span class="tile-icon">${categoryIcons[cat.id] || ""}</span><span class="tile-count">${catalogItems.length?counts[cat.id]:""}</span></span>
+      <span class="tile-visual"><img class="category-art" src="${categoryArtwork(cat.id)}" alt="" loading="lazy" /><span class="tile-count">${catalogItems.length?counts[cat.id]:""}</span></span>
       <span class="tile-name">${escapeHtml(cat.name)}</span>
     </button>`).join("");
 }
@@ -92,7 +83,7 @@ function renderCard(item){
   return `<article class="product-card">
     <div class="product-visual">
       <span class="product-tag">${item.demo?"EXEMPLO FICTÍCIO":escapeHtml(statusName(item.status))}</span>
-      ${image?`<img class="product-image" loading="lazy" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" />`:'<img class="placeholder-mark" src="./assets/raylis-symbol.svg" alt="" loading="lazy" />'}
+      ${image?`<img class="product-image" loading="lazy" src="${escapeHtml(image)}" data-category-id="${escapeHtml(item.categoryId)}" alt="${escapeHtml(item.name)}" />`:`<img class="category-illustration" src="${categoryArtwork(item.categoryId)}" alt="" loading="lazy" /><span class="illustration-note">Imagem de categoria</span>`}
     </div>
     <div class="product-card-body">
       <span class="product-category">${escapeHtml(categoryName(item.categoryId))}</span>
@@ -142,7 +133,7 @@ function openProduct(id){
   const image=sanitizeImageSrc(item.imageUrl);
   const inquiryUrl=productInquiryLink(item);
   $("dialog-content").innerHTML=`
-    <div class="dialog-visual">${image?`<img class="product-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}"/>`:'<img src="./assets/raylis-symbol.svg" class="placeholder-mark" alt="" />'}</div>
+    <div class="dialog-visual">${image?`<img class="product-image" src="${escapeHtml(image)}" data-category-id="${escapeHtml(item.categoryId)}" alt="${escapeHtml(item.name)}"/>`:`<img src="${categoryArtwork(item.categoryId)}" class="category-illustration" alt="" />`}</div>
     <div class="dialog-body">
       <p class="eyebrow">${escapeHtml(categoryName(item.categoryId))}</p>
       <h2 id="dialog-title">${escapeHtml(item.name)}</h2>
@@ -244,7 +235,7 @@ function setupEvents(){
   $("empty-action").addEventListener("click",clearFilters);
   $("load-more").addEventListener("click",()=>{state.shown+=PAGE_SIZE;render();});
   $("product-grid").addEventListener("click",event=>{const button=event.target.closest("[data-product-id]");if(button)openProduct(button.dataset.productId);});
-  $("product-grid").addEventListener("error",event=>{const img=event.target;if(img.matches("img.product-image")){img.src="./assets/raylis-symbol.svg";img.className="placeholder-mark";img.alt="";}},true);
+  $("product-grid").addEventListener("error",event=>{const img=event.target;if(img.matches("img.product-image")){img.src=categoryArtwork(img.dataset.categoryId);img.className="category-illustration";img.alt="";}},true);
   $("filter-toggle").addEventListener("click",openFilters);
   $("filter-close").addEventListener("click",()=>{closeFilters();$("filter-toggle").focus();});
   $("filters-backdrop").addEventListener("click",closeFilters);
