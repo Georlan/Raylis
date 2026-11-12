@@ -1,4 +1,5 @@
 import {CATEGORIES,PAGE_SIZE,cleanProducts,selectProducts,categoryCounts,paginate,createDemoProducts,sanitizeImageSrc} from "./catalog.mjs";
+import {CONTACT, productInquiryLink} from "./contacts.mjs";
 
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(window.location.search);
@@ -20,6 +21,11 @@ let searchTimer;
 const escapeHtml = value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 const categoryName = id => CATEGORIES.find(cat=>cat.id===id)?.name || "Outros";
 const statusName = status => ({"available":"Disponível","inquiry":"Sob consulta","unavailable":"Indisponível"})[status] || "A confirmar";
+
+function setupContactLinks(){
+  document.querySelectorAll('[data-contact="whatsapp"]').forEach(link=>link.href=CONTACT.whatsappUrl);
+  document.querySelectorAll('[data-contact="instagram"]').forEach(link=>link.href=CONTACT.instagramUrl);
+}
 
 function syncUrl(){
   const url=new URL(window.location.href);
@@ -115,6 +121,7 @@ function openProduct(id){
   const item=catalogItems.find(product=>product.id===id);
   if(!item)return;
   const image=sanitizeImageSrc(item.imageUrl);
+  const inquiryUrl=productInquiryLink(item);
   $("dialog-content").innerHTML=`
     <div class="dialog-visual">${image?`<img class="product-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}"/>`:'<img src="./assets/raylis-symbol.svg" class="placeholder-mark" alt="" />'}</div>
     <div class="dialog-body">
@@ -126,7 +133,8 @@ function openProduct(id){
         <div class="detail-row"><span>Disponibilidade</span><strong>${escapeHtml(item.demo?"Não comercializado":statusName(item.status))}</strong></div>
         ${item.sku?`<div class="detail-row"><span>Referência</span><strong>${escapeHtml(item.sku)}</strong></div>`:""}
       </div>
-      <div class="dialog-disclaimer">${item.demo?"Este item é fictício e existe apenas para demonstrar a navegação do catálogo.":"Detalhes, preços e formas de atendimento serão confirmados após o cadastro oficial."}</div>
+      <div class="dialog-disclaimer">${item.demo?"Este item é fictício e existe apenas para demonstrar a navegação do catálogo.":"Preços, disponibilidade e informações devem ser confirmados diretamente com a loja."}</div>
+      ${inquiryUrl?`<a class="button button-primary dialog-inquiry" href="${escapeHtml(inquiryUrl)}" target="_blank" rel="noopener noreferrer">Consultar este produto pelo WhatsApp <span aria-hidden="true">↗</span></a>`:""}
     </div>`;
   $("product-dialog").showModal();
 }
@@ -175,6 +183,7 @@ function setupEvents(){
 }
 async function init(){
   $("year").textContent=new Date().getFullYear();
+  setupContactLinks();
   $("mobile-nav").hidden=true;
   setupEvents();
   if(demoMode){
