@@ -1,0 +1,16 @@
+{
+  "name": "raylis-catalogo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Catálogo estático e responsivo Raylis Produtos Naturais",
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check-site.mjs",
+    "validate": "npm run check && npm test",
+    "import:csv": "node scripts/import-csv.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
