@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 380">
+<title>Composição ilustrada de chá e folhas</title><defs>
+<linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFFFFF" stop-opacity=".85"/><stop offset=".45" stop-color="#E3EEDF" stop-opacity=".28"/><stop offset="1" stop-color="#A6BBA2" stop-opacity=".65"/></linearGradient>
+<linearGradient id="tea" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#D69B49"/><stop offset=".6" stop-color="#B57935"/><stop offset="1" stop-color="#8B501D"/></linearGradient>
+<linearGradient id="leaf" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#8AB559"/><stop offset=".55" stop-color="#397B39"/><stop offset="1" stop-color="#18552C"/></linearGradient>
+<linearGradient id="ceramic" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#FFFDF6"/><stop offset="1" stop-color="#D1D3BB"/></linearGradient>
+</defs>
+<ellipse cx="275" cy="340" rx="204" ry="19" fill="#264D2C" opacity=".10"/>
+<g transform="translate(50 18)" fill="none" stroke-linecap="round">
+<path d="M296 278C325 229 356 168 368 54" stroke="#3A7639" stroke-width="5"/>
+<path d="M354 125C297 120 303 72 315 53c28 9 46 35 39 72Z" fill="url(#leaf)" stroke="#285F31" stroke-width="2"/>
+<path d="M363 105c48-42 80-37 97-22-16 31-49 45-97 22Z" fill="url(#leaf)" stroke="#285F31" stroke-width="2"/>
+<path d="M342 176c-56 5-75-30-75-56 41-3 69 17 75 56Z" fill="url(#leaf)" stroke="#285F31" stroke-width="2"/>
+<path d="M379 178c30-52 66-54 86-43-14 37-43 52-86 43Z" fill="url(#leaf)" stroke="#285F31" stroke-width="2"/>
+<path d="M298 280c-38-40-67-96-72-165" stroke="#477F40" stroke-width="4"/>
+<path d="M230 165c-50-2-61-32-57-51 36 0 54 21 57 51Z" fill="#6B9F49" stroke="#356D37" stroke-width="2"/>
+<path d="M239 200c44-36 59-30 72-20-13 27-36 35-72 20Z" fill="#5D9A49" stroke="#356D37" stroke-width="2"/>
+</g>
+<g transform="translate(60 158)">
+<ellipse cx="130" cy="159" rx="122" ry="17" fill="#6B7B57" opacity=".16"/>
+<path d="M47 41h161l-12 108c-2 23-17 29-68 29s-66-6-68-29Z" fill="url(#glass)" stroke="#9CAC91" stroke-width="4"/>
+<path d="M55 70h145l-10 79c-2 14-11 21-62 21s-60-7-62-21Z" fill="url(#tea)" opacity=".96"/>
+<ellipse cx="128" cy="70" rx="72" ry="10" fill="#E2AB5A" opacity=".67"/>
+<path d="M207 61c74-4 79 87-3 88" stroke="#B1BFA9" stroke-width="19" fill="none"/>
+<path d="M208 65c62-2 68 67-3 70" stroke="#F3F6E8" stroke-width="11" fill="none"/>
+<ellipse cx="128" cy="41" rx="81" ry="13" fill="#EFF4E8" opacity=".55" stroke="#9CAC91" stroke-width="3"/>
+<path d="M53 39c27-12 122-12 150 0" stroke="#FFF" stroke-opacity=".7" stroke-width="4" fill="none"/>
+<ellipse cx="131" cy="186" rx="137" ry="14" fill="#DEE4CC" stroke="#BBC8AB" stroke-width="3"/>
+</g>
+<g transform="translate(318 285)">
+<ellipse cx="80" cy="47" rx="94" ry="20" fill="#6B7B57" opacity=".13"/>
+<path d="M14 2c4 47 24 69 67 69 43 0 67-24 71-69Z" fill="#A77A53" stroke="#765132" stroke-width="3"/>
+<ellipse cx="82" cy="1" rx="71" ry="20" fill="#C49569" stroke="#885E3A" stroke-width="3"/>
+<ellipse cx="82" cy="1" rx="62" ry="13" fill="#807E4C"/>
+<g fill="#C5B98B" stroke="#716B47" stroke-width="1.4" stroke-linecap="round">
+<path d="m40 3 14-11 2 16-14 4Z"/><path d="m58-7 17 3-11 14Z"/><path d="m83-11 13 13-17 8Z"/><path d="m102 2 16-9-1 16Z"/><path d="m124-5 9 16-19-2Z"/><path d="m73 4 7-6 13 9-5 7Z"/><path d="m45-14 4 12-11 6Z"/>
+</g>
+</g>
+</svg>
