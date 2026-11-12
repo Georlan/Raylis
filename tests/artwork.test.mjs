@@ -32,7 +32,7 @@ test("UI real usa fotos nas categorias e exibe rótulo de imagem ilustrativa",as
     readFile("src/app.mjs","utf8"),
     readFile("styles/artwork.css","utf8")
   ]);
-  assert.ok(html.includes('src="./assets/photos/hero-tea.webp"'));
+  assert.ok(html.includes('src="./assets/photos/hero-editorial.webp"'));
   assert.ok(html.includes('styles/artwork.css'));
   assert.ok(app.includes('import {categoryArtwork} from "./artwork.mjs"'));
   assert.ok(app.includes('class="category-art"'));
