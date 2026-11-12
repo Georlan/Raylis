@@ -1,11 +1,22 @@
 import {readFile,access} from "node:fs/promises";
 import {CATEGORIES,cleanProducts} from "../src/catalog.mjs";
-const required=["index.html","styles.css","src/app.mjs","src/catalog.mjs","data/products.json","data/products-template.csv","assets/raylis-logo.svg","assets/raylis-symbol.svg","assets/favicon.svg"];
+import {CONTACT} from "../src/contacts.mjs";
+const required=["index.html","styles.css","src/app.mjs","src/catalog.mjs","src/contacts.mjs","styles/contacts.css","data/products.json","data/products-template.csv","assets/raylis-logo.svg","assets/raylis-symbol.svg","assets/favicon.svg"];
 for (const file of required) await access(file);
 const html=await readFile("index.html","utf8");
-for(const id of ["catalogo","categorias","inicio","search-input","filter-categories","product-grid","product-dialog"]){
+for(const id of ["catalogo","categorias","inicio","contato","contact-title","search-input","filter-categories","product-grid","product-dialog"]){
   if(!html.includes(`id="${id}"`))throw new Error(`Elemento obrigatório ausente: #${id}`);
 }
+for (const [name,href] of [["WhatsApp",CONTACT.whatsappUrl],["Instagram",CONTACT.instagramUrl]]) {
+  if (!html.includes(`href="${href}"`)) throw new Error(`Link oficial do ${name} ausente.`);
+}
+for (const ref of ["styles/contacts.css","class=\"quick-dock\"","class=\"contact-grid\""]) {
+  if (!html.includes(ref)) throw new Error(`Estrutura de contato ausente: ${ref}`);
+}
+const app=await readFile("src/app.mjs","utf8");
+if(!app.includes("productInquiryLink(item)"))throw new Error("Detalhes do produto não oferecem consulta contextual.");
+const contactsCss=await readFile("styles/contacts.css","utf8");
+if(!contactsCss.includes("max-width:720px")||!contactsCss.includes(".quick-dock"))throw new Error("Atalhos mobile não configurados.");
 const data=JSON.parse(await readFile("data/products.json","utf8"));
 if(!Array.isArray(data))throw new Error("O catálogo precisa ser uma lista JSON.");
 if(cleanProducts(data).length!==data.length)throw new Error("O JSON contém itens inválidos ou IDs repetidos.");
