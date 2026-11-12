@@ -72,7 +72,7 @@ function renderCard(item){
   return `<article class="product-card">
     <div class="product-visual">
       <span class="product-tag">${item.demo?"EXEMPLO FICTÍCIO":escapeHtml(statusName(item.status))}</span>
-      ${image?`<img class="product-image" loading="lazy" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" />`:'<img class="placeholder-mark" src="./assets/raylis-mark.svg" alt="" loading="lazy" />'}
+      ${image?`<img class="product-image" loading="lazy" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" />`:'<img class="placeholder-mark" src="./assets/raylis-symbol.svg" alt="" loading="lazy" />'}
     </div>
     <div class="product-card-body">
       <span class="product-category">${escapeHtml(categoryName(item.categoryId))}</span>
@@ -116,7 +116,7 @@ function openProduct(id){
   if(!item)return;
   const image=sanitizeImageSrc(item.imageUrl);
   $("dialog-content").innerHTML=`
-    <div class="dialog-visual">${image?`<img class="product-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}"/>`:'<img src="./assets/raylis-mark.svg" class="placeholder-mark" alt="" />'}</div>
+    <div class="dialog-visual">${image?`<img class="product-image" src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}"/>`:'<img src="./assets/raylis-symbol.svg" class="placeholder-mark" alt="" />'}</div>
     <div class="dialog-body">
       <p class="eyebrow">${escapeHtml(categoryName(item.categoryId))}</p>
       <h2 id="dialog-title">${escapeHtml(item.name)}</h2>
@@ -162,7 +162,7 @@ function setupEvents(){
   $("empty-action").addEventListener("click",clearFilters);
   $("load-more").addEventListener("click",()=>{state.shown+=PAGE_SIZE;render();});
   $("product-grid").addEventListener("click",event=>{const button=event.target.closest("[data-product-id]");if(button)openProduct(button.dataset.productId);});
-  $("product-grid").addEventListener("error",event=>{const img=event.target;if(img.matches("img.product-image")){img.src="./assets/raylis-mark.svg";img.className="placeholder-mark";img.alt="";}},true);
+  $("product-grid").addEventListener("error",event=>{const img=event.target;if(img.matches("img.product-image")){img.src="./assets/raylis-symbol.svg";img.className="placeholder-mark";img.alt="";}},true);
   $("filter-toggle").addEventListener("click",openFilters);
   $("filter-close").addEventListener("click",()=>{closeFilters();$("filter-toggle").focus();});
   $("filters-backdrop").addEventListener("click",closeFilters);
