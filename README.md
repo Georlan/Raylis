@@ -18,19 +18,52 @@ Base inicial do site/catálogo digital da **Raylis Produtos Naturais**, criada p
 
 > **Importante:** a marca enviada foi usada como referência de cores e forma. O símbolo atual é uma **recriação vetorial provisória**, não o arquivo original da identidade. Substituir por logotipo oficial em SVG/PNG transparente antes do lançamento definitivo.
 
-## Visualização
+## Desenvolvimento local — sem serviços pagos
 
-Não é necessário instalar dependências. Sirva os arquivos com um servidor HTTP local:
+A Raylis foi planejada como site **100% estático**: HTML, CSS, JavaScript, ilustrações e `data/products.json`. A busca, os filtros e a paginação são executados no navegador. **Não há backend nem banco de dados remoto.** O servidor abaixo é apenas para servir arquivos durante o desenvolvimento no seu próprio computador: não é um serviço a contratar nem parte do site publicado.
+
+### Abrir a prévia
+
+Requisitos: Git e Node.js 20 ou superior instalados.
 
 ```bash
-python3 -m http.server 8000
-# http://localhost:8000/
-# http://localhost:8000/?demo=1#catalogo
+git clone https://github.com/Georlan/Raylis.git
+cd Raylis
+npm run dev
 ```
 
-Também é compatível com hospedagem estática (GitHub Pages, Cloudflare Pages, Netlify), sem build. **O site não foi automaticamente publicado em um domínio:** é preciso configurar a hospedagem.
+O comando inicia um servidor HTTP local em `127.0.0.1:8000`, com atualização do navegador quando os arquivos são alterados. Não usa pacotes npm externos nem requer executar `npm install`.
 
-No GitHub Pages, configurar **Settings → Pages → Deploy from a branch → main → /(root)**. O caminho relativo dos assets permite hospedar em `/Raylis/`. Para testar o catálogo, abrir `https://georlan.github.io/Raylis/?demo=1#catalogo` **somente depois de habilitar Pages**.
+- **Página inicial:** http://localhost:8000/
+- **Catálogo com 520 itens de demonstração:** http://localhost:8000/?demo=1#catalogo
+- **Encerrar servidor:** `Ctrl+C`
+- **Outra porta:** `PORT=8080 npm run dev`
+
+Se não tiver Node.js instalado, também é possível usar Python 3 (`python3 -m http.server 8000 --bind 127.0.0.1`); neste caso, recarregue com F5 após editar.
+
+O modo `?demo=1` é para avaliar usabilidade e desempenho dos filtros: os 520 itens são **fictícios**, sem preços nem alegações de produtos reais. A rota sem parâmetro utiliza apenas `data/products.json`, que começará vazia.
+
+### Rotina de alterações
+
+1. Abra o projeto no editor (VS Code ou outro) e execute `npm run dev`.
+2. Edite `styles.css` (visual), `index.html` (estrutura), `src/app.mjs` (interface), ou `src/catalog.mjs` (regras dos filtros).
+3. Avalie em http://localhost:8000/?demo=1#catalogo e também em viewport de celular.
+4. Rode `npm run validate` antes de salvar no GitHub.
+5. Faça commit e push para o repositório quando aprovado. **Cloudflare só entra depois da validação visual.**
+
+### Custo e manutenção
+
+A versão inicial não requer Railway, Supabase, Firebase, PostgreSQL, hospedagem de APIs ou painel de administração. A futura publicação pode ser feita em **Cloudflare Pages (plano gratuito, sujeito a limites e termos vigentes)**. Domínio personalizado, recursos premium e eventuais serviços de terceiros são opcionais e podem ter custo separado.
+
+A Raylis poderá ter cerca de 500 produtos sem mensalidade de backend: prepare uma planilha CSV e exporte-a para `data/products.json`. Qualquer mudança feita no catálogo será publicada como atualização do site. O cliente **não tem painel administrativo ou checkout** nesta fase; caso queira edição online sem Git e sem servidor, isso será avaliado separadamente para não introduzir custo ou complexidade sem necessidade.
+
+Seus dados ficam nos arquivos do repositório. **Não colocar credenciais, dados privados de clientes ou informações confidenciais nos arquivos públicos de catálogo.**
+
+## Publicação (somente quando aprovada)
+
+O projeto também é compatível com Cloudflare Pages ou GitHub Pages sem build. **Ainda não há site publicado automaticamente no Cloudflare.**
+
+Para Cloudflare Pages, após aprovar a versão: conectar o GitHub, selecionar `Georlan/Raylis`, manter comando de build vazio e definir diretório de saída como a raiz `/` conforme o fluxo de implantação estática disponível. Nenhum token ou banco é necessário no código do site.
 
 ## Adicionar produtos
 
