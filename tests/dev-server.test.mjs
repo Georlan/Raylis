@@ -21,9 +21,12 @@ test("prévia serve o catálogo estático sem backend ou dependências",async()=
     assert.equal(catalog.status,200);
     assert.deepEqual(await catalog.json(),[]);
 
-    const svg=await fetch(url+"/assets/raylis-mark.svg");
-    assert.equal(svg.status,200);
-    assert.match(svg.headers.get("content-type"),/image\/svg\+xml/);
+    for(const asset of ["raylis-logo.svg","raylis-symbol.svg"]){
+      const svg=await fetch(url+"/assets/"+asset);
+      assert.equal(svg.status,200);
+      assert.match(svg.headers.get("content-type"),/image\/svg\+xml/);
+      assert.match(await svg.text(),/data:image\/png;base64,/);
+    }
 
     const head=await fetch(url+"/styles.css",{method:"HEAD"});
     assert.equal(head.status,200);
