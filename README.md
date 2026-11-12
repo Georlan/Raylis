@@ -16,11 +16,11 @@ Base inicial do site/catálogo digital da **Raylis Produtos Naturais**, criada p
 - Filtros preservados na URL (compartilháveis).
 - Modo de demonstração **separado**, com 520 itens inequivocamente fictícios: `?demo=1#catalogo`.
 
-> **Importante:** a marca enviada foi usada como referência de cores e forma. O símbolo atual é uma **recriação vetorial provisória**, não o arquivo original da identidade. Substituir por logotipo oficial em SVG/PNG transparente antes do lançamento definitivo.
+**Identidade integrada:** o site utiliza as duas artes reconstruídas e aprovadas da Raylis, disponibilizadas em `assets/raylis-logo.svg` e `assets/raylis-symbol.svg`. Esses SVGs são contêineres de PNG otimizado com transparência: preservam a aparência das artes enviadas, mas **não** são vetores editáveis nem substituem o arquivo-mestre original da marca. Os símbolos antigos e a ilustração fictícia da abertura foram removidos.
 
 ## Desenvolvimento local — sem serviços pagos
 
-A Raylis foi planejada como site **100% estático**: HTML, CSS, JavaScript, ilustrações e `data/products.json`. A busca, os filtros e a paginação são executados no navegador. **Não há backend nem banco de dados remoto.** O servidor abaixo é apenas para servir arquivos durante o desenvolvimento no seu próprio computador: não é um serviço a contratar nem parte do site publicado.
+A Raylis foi planejada como site **100% estático**: HTML, CSS, JavaScript, identidade Raylis otimizada e `data/products.json`. A busca, os filtros e a paginação são executados no navegador. **Não há backend nem banco de dados remoto.** O servidor abaixo é apenas para servir arquivos durante o desenvolvimento no seu próprio computador: não é um serviço a contratar nem parte do site publicado.
 
 ### Abrir a prévia
 
@@ -64,6 +64,19 @@ Seus dados ficam nos arquivos do repositório. **Não colocar credenciais, dados
 O projeto também é compatível com Cloudflare Pages ou GitHub Pages sem build. **Ainda não há site publicado automaticamente no Cloudflare.**
 
 Para Cloudflare Pages, após aprovar a versão: conectar o GitHub, selecionar `Georlan/Raylis`, manter comando de build vazio e definir diretório de saída como a raiz `/` conforme o fluxo de implantação estática disponível. Nenhum token ou banco é necessário no código do site.
+
+## Paleta da marca (extraída das imagens aprovadas)
+
+| Papel | Cor | Uso |
+| --- | --- | --- |
+| Verde profundo | `#064714` | Textos primários, cabeçalho, botões |
+| Verde principal | `#185C20` | Estados de ação e contraste |
+| Verde folha | `#4E9128` | Identificação e detalhes botânicos |
+| Verde-lima | `#9CCB4C` | Destaques e decoração |
+| Verde claro | `#D5E58D` | Iluminação e fundos secundários |
+| Creme de apoio | `#FBF8F0` | Superfícies claras |
+
+As cores foram obtidas por amostragem dos pixels das artes aprovadas; são referências do projeto, não um manual oficial de identidade. O site não depende de fontes externas ou backend. O arquivo `styles.css` concentra os tokens e as aplicações de cor.
 
 ## Adicionar produtos
 
@@ -125,7 +138,7 @@ index.html                 Página semântica
 styles.css                 Sistema visual responsivo
 src/app.mjs                Interface, filtros e detalhes
 src/catalog.mjs            Motor puro de busca, facetas e paginação
-assets/                    Símbolos vetoriais provisórios
+assets/                    Logo aprovada (PNG incorporado em SVG), símbolo e favicon
 data/products.json         Catálogo real (vazio por enquanto)
 data/products-template.csv Modelo de importação
 scripts/import-csv.mjs     Importador/validador da planilha
@@ -137,7 +150,7 @@ tests/                     Testes automatizados sem dependências
 ## Próximas entregas
 
 1. Receber a planilha com os produtos e confirmar a taxonomia (categorias/subcategorias).
-2. Importar fotos autorizadas e substituir o símbolo provisório pelo logotipo oficial.
+2. Importar fotos autorizadas; conferir se existe arquivo-mestre da logo com qualidade superior.
 3. Conferir SKU, status, textos e políticas de publicação.
 4. Definir se haverá venda online ou apenas consulta/contato.
 5. Configurar domínio, hospedagem e métricas com consentimento adequado, se aplicável.
