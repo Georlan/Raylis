@@ -9,7 +9,7 @@ export const CATEGORIES = Object.freeze([
   {id:"outros", name:"Outros produtos", description:"Mais possibilidades", code:"06"}
 ]);
 const collator = new Intl.Collator("pt-BR", {sensitivity:"base", numeric:true});
-export const PAGE_SIZE = 24;
+export const PAGE_SIZE = 12;
 export const VALID_STATUSES = ["available", "inquiry", "unavailable"];
 export function normalize(value) {
   return String(value ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLocaleLowerCase("pt-BR").replace(/\s+/g," ").trim();

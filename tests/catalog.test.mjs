@@ -32,7 +32,7 @@ test("paginação nunca exibe mais que solicitado",()=>{
   assert.equal(paginate(items,2).visible.length,2);
   assert.equal(paginate(items,2).hasMore,true);
   assert.equal(paginate(items,200).hasMore,false);
-  assert.equal(PAGE_SIZE,24);
+  assert.equal(PAGE_SIZE,12);
 });
 test("demonstração contém 520 itens inequivocamente fictícios",()=>{
   const examples=createDemoProducts(520);
