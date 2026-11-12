@@ -191,17 +191,26 @@ function setupPointerEffects(){
 }
 function setupSectionNavigation(){
   const header=document.querySelector(".site-header");
-  const ids=["inicio","categorias","catalogo"];
-  const nav=[...document.querySelectorAll("[data-nav-section]")];
+  const ids=["inicio","categorias","catalogo","contato"];
+  const dock=[...document.querySelectorAll("[data-nav-section]")];
+  const headerLinks=[...document.querySelectorAll("[data-header-section]")];
   const update=()=>{
     header.classList.toggle("is-scrolled",window.scrollY>20);
     const threshold=window.scrollY+window.innerHeight*.42;
     let active="inicio";
-    for(const id of ids){const section=$(id);if(section && section.getBoundingClientRect().top+window.scrollY<=threshold)active=id;}
-    for(const item of nav){
+    for(const id of ids){
+      const section=$(id);
+      if(section && section.getBoundingClientRect().top+window.scrollY<=threshold)active=id;
+    }
+    for(const item of dock){
       const selected=item.dataset.navSection===active;
       item.classList.toggle("is-active",selected);
-      if(selected)item.setAttribute("aria-current","location");else item.removeAttribute("aria-current");
+      if(selected)item.setAttribute("aria-current","location");
+      else item.removeAttribute("aria-current");
+    }
+    for(const link of headerLinks){
+      if(link.dataset.headerSection===active)link.setAttribute("aria-current","location");
+      else link.removeAttribute("aria-current");
     }
   };
   window.addEventListener("scroll",update,{passive:true});
