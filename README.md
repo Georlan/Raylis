@@ -16,6 +16,34 @@ Base inicial do site/catálogo digital da **Raylis Produtos Naturais**, criada p
 - Filtros preservados na URL (compartilháveis).
 - Modo de demonstração **separado**, com 520 itens inequivocamente fictícios: `?demo=1#catalogo`.
 
+## Canais oficiais e atendimento (12/11/2026)
+
+Dados fornecidos diretamente para este projeto e conferidos com a captura do perfil:
+- **WhatsApp:** [+55 (88) 92191-7797](https://wa.me/5588921917797) — contato direto, sem integração de API.
+- **Instagram:** [@raylis_produtosnaturais](https://www.instagram.com/raylis_produtosnaturais/) — link para o perfil, sem incorporar feed.
+- **Referência de localização:** Jaguaribara, Ceará. **Não publicar endereço completo nem horário de funcionamento até confirmação.**
+
+O perfil apresenta a Raylis como loja de alimentos naturais, com menções a produtos a granel e manipulados e categorias especiais. Essa informação é apenas um contexto comercial do Instagram; **não pressupõe disponibilidade, composição, isenção de alérgenos, preços ou estoque de produtos específicos**. As categorias do catálogo ainda dependem da planilha oficial.
+
+### Onde ficam os atalhos
+
+- Cabeçalho desktop: WhatsApp direto; navegação também inclui **Contato**.
+- Menu mobile: atalhos para WhatsApp e Instagram.
+- Abertura: consulta com a loja ao lado de **Explorar catálogo**.
+- Faixa do Instagram: acesso à conta entre apresentação e categorias.
+- Catálogo: atalho de WhatsApp para dúvidas; fichas de **produtos reais** geram mensagens com nome e referência do item, solicitando detalhes e disponibilidade.
+- **Modo demo:** os 520 itens fictícios continuam sem botão de consulta de item, evitando confusão com produtos reais.
+- Seção **Contato**: duas opções claras e número clicável para chamada telefônica.
+- No celular: barra fixa com **Catálogo**, **WhatsApp** e **Instagram**.
+- Rodapé: links diretos para os canais oficiais.
+
+As URLs e a função de consulta contextual estão em `src/contacts.mjs`. Alterar por lá quando os canais oficiais mudarem. Os links no HTML têm endereços públicos de reserva, permitindo abrir o contato mesmo que o JavaScript do catálogo não funcione.
+
+**Custo:** links `wa.me` e Instagram não exigem backend, token, conta comercial paga ou API. O site continua estático. Abrir o WhatsApp ou Instagram depende dos respectivos serviços, internet e aplicativos/navegadores do visitante. Não há atendimento automatizado, formulários que armazenam dados, rastreamento de conversas nem integração de mensagens.
+
+**Validação do Instagram:** informações de perfil provêm do print fornecido; não copiamos posts, fotos, seguidores ou promessas de marketing. O Instagram pode bloquear leitura automatizada e a marca permanece responsável pelas informações de seus produtos.
+
+
 **Identidade integrada:** o site utiliza as duas artes reconstruídas e aprovadas da Raylis, disponibilizadas em `assets/raylis-logo.svg` e `assets/raylis-symbol.svg`. Esses SVGs são contêineres de PNG otimizado com transparência: preservam a aparência das artes enviadas, mas **não** são vetores editáveis nem substituem o arquivo-mestre original da marca. Os símbolos antigos e a ilustração fictícia da abertura foram removidos.
 
 ## Desenvolvimento local — sem serviços pagos
